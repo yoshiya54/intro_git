@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>タブ</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
+  <link rel="stylesheet" href="slick.css">
+  <link rel="stylesheet" href="slick-theme.css">
+  <script src="slick.min.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .content{
+      width: 500px;
+      padding: 80px auto 0;
+      margin: 0 auto;
+    }
+    h2{
+      margin-top: : 120px;
+      text-align: center;
+    }
+    .slider{
+      width: 400px;
+      height: auto;
+      margin: 0 auto 80px;
+    }
+    .slider img{
+      width: 400px;
+      height: auto;
+    }
+    .slick-dots li button{
+      background-color: #333;
+      background-radius: auto;
+      width: 10px;
+      height: 10px;
+    }
+    .slick-prev,.slick-next{
+      background-color: #111;
+      height: 100%;
+    }
+    .slick-prev:hover,slick-next:hover{
+      opacity: 0.9;
+    }
+    .slider .slick-dots{
+      position:absolute;
+      bottom: -70px;
+    }
+    #tgBtn{
+      background-color: #333;
+      border: none;
+      border-radius: 3px;
+      color: #fafafa;
+      padding: 20px;
+      position: absolute;
+      left: 0;
+      top: -10px;
+        }
+    #tgBtn:hover{
+      cursor:pointer;
+
+    }
+
+  </style>
+</head>
+<body>
+  <div class="cntent">
+    <h2>スライドショー</h2>
+    <div class="slider">
+      <div><img src="images/IMG1.jpg" alt=""></div>
+      <div><img src="images/IMG3.jpg" alt=""></div>
+      <div><img src="images/IMG4.jpg" alt=""></div>
+      <div><img src="images/IMG5.jpg" alt=""></div>
+      <div><img src="images/IMG6.jpg" alt=""></div>
+    </div>
+  </div>
+
+</body>
+<script>
+  $(function(){
+    $(".slider").slick({
+      dots:true,
+      arroows:true,
+      autoplay:true,
+      autoplaySpeed:2500,
+      pauseOnHover:false,
+      lazyLoad:"progressive"
+    });
+      var stopBtn = $('<button id="tglBtn"><span id="startBtn">再生</span><span id="stopBtn">停止</span></button>');
+
+      stopBtn.prependTo(".slider .slick-dots");
+      $('#startBtn').hide();
+      var flg = "play";
+
+      $('#tglBtn').click(function(){
+        $('#startBtn').toggle();
+        if(flg == "play"){
+          $('#startBtn').show();
+          $('#stopBtn').hide();
+          flg = "stop";
+          $('.slider').slick('slickPause');
+        }else{
+          $('#stopBtn').show();
+          $('#startBtn').hide();
+          flg = "play";
+          $('.slider').slick('slickStart');
+        }
+
+
+      });
+    });
+
+</script>
+</html>
